@@ -1,5 +1,7 @@
 # flaskvue
-Learning Flask and Vue by using MiniShift and the Developer CLI
+Learning Flask and Vue by using MiniShift and the OpenShift Developer CLI
+
+The OpenShift developer CLI provides me with a simple way to work with containers that have a high fidelity to what I use in my CI/CD environments, without having to wait for Container builds.
 
 This project is my learning of Flask and Vue working together. 
 
@@ -30,3 +32,6 @@ For now you have to update the API Url in the Books.vue component to point to yo
 
 The components should now talk to each other.
 
+## You can debug the components by running
+* odo log python
+* odo log nginx

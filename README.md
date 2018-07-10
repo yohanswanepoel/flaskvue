@@ -9,8 +9,9 @@ You can run the components seperately on the local environment.
 
 It is more interesting using the OpenShift Developer CLI: https://github.com/redhat-developer/odo/blob/master/docs/cli-reference.md
 
-## Vue information see: https://vuejs.org/v2/guide/installation.html
+## Vue information: 
 In general you want to do:
+* See https://vuejs.org/v2/guide/installation.html
 * npm install -g vue-cli
 * cd into the book-ui folder
 * run: npm install  (this creates teh dist folder that will be used later)

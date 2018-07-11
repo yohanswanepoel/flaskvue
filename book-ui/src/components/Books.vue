@@ -72,8 +72,13 @@
 <script>
 import axios from 'axios';
 
-const path = 'http://python-app-myproject.192.168.42.125.nip.io/books';
-// axios.default.baseURL = baseURL;
+const url = window.location.hostname;
+console.log(url);
+const domainURL = url.substring(url.indexOf('.'), url.length);
+console.log(domainURL);
+const path = `http://python-app-myproject${domainURL}/books`;
+console.log(path);
+// saxios.default.baseURL = baseURL;
 
 export default {
   name: 'Books',
@@ -89,6 +94,7 @@ export default {
   },
   methods: {
     getBooks() {
+      // const path = 'http://python-app-myproject.${domainURL}/books';
       axios.get(path)
         .then((res) => {
           this.books = res.data.books;
@@ -99,6 +105,7 @@ export default {
     },
     addBook(payload) {
       // const path = '/books';
+      // const path = 'http://python-app-myproject.${domainURL}/books';
       axios.post(path, payload)
         .then(() => {
           this.getBooks();

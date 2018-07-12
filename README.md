@@ -9,6 +9,18 @@ You can run the components seperately on the local environment.
 
 It is more interesting using the OpenShift Developer CLI: https://github.com/redhat-developer/odo/blob/master/docs/cli-reference.md
 
+Version 1 does not utilise Keycloak.
+The current master uses Keycloak.
+## Keycloak install on MiniShift
+* Make sure you run the oc process command in the same project as your app / If not you will have to change the url in main.js in book-ui project
+* oc process -f https://raw.githubusercontent.com/david-martin/keycloak-with-openshift-auth-provider/0.0.2/keycloak-with-openshift-auth-provider.yaml | oc create -f -
+* You can get Keycloak admin password like so: oc env dc/keycloak --list | grep KEYCLOAK_PASSWORD
+* Then create a keycloak Realm: bookapi
+* create a group: user
+* craete a user as per keycloak settings
+* create a client app in the realm, point redirect url to the UI URL
+* With any luck that should be all you need to do to get Keycloack to work.
+
 ## Vue information: 
 In general you want to do:
 * See https://vuejs.org/v2/guide/installation.html

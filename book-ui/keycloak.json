@@ -1,0 +1,7 @@
+{
+  "realm": "bookapi",
+  "auth-server-url": "http://keycloak-myproject.192.168.42.125.nip.io/auth",
+  "ssl-required": "external",
+  "resource": "vue",
+  "public-client": true
+}

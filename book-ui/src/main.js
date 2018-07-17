@@ -23,4 +23,4 @@ new Vue({
   data: {
     baseURL: domainURL,
   },
-}); 
+});

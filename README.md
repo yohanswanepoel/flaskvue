@@ -1,4 +1,4 @@
-# flaskvue
+# flaskvue - No SSO branch
 Learning Flask and Vue by using MiniShift and the OpenShift Developer CLI
 
 The OpenShift developer CLI provides me with a simple way to work with containers that have a high fidelity to what I use in my CI/CD environments, without having to wait for Container builds.
@@ -8,18 +8,6 @@ This project is my learning of Flask and Vue working together.
 You can run the components seperately on the local environment.
 
 It is more interesting using the OpenShift Developer CLI: https://github.com/redhat-developer/odo/blob/master/docs/cli-reference.md
-
-Version 1 does not utilise Keycloak.
-The current master uses Keycloak.
-## Keycloak install on MiniShift
-* Make sure you run the oc process command in the same project as your app / If not you will have to change the url in main.js in book-ui project
-* oc process -f https://raw.githubusercontent.com/david-martin/keycloak-with-openshift-auth-provider/0.0.2/keycloak-with-openshift-auth-provider.yaml | oc create -f -
-* You can get Keycloak admin password like so: oc env dc/keycloak --list | grep KEYCLOAK_PASSWORD
-* Then create a keycloak Realm: bookapi
-* create a group: user
-* craete a user as per keycloak settings
-* create a client app in the realm, point redirect url to the UI URL
-* With any luck that should be all you need to do to get Keycloack to work.
 
 ## Vue information: 
 In general you want to do:

@@ -1,6 +1,6 @@
 #!/bin/bash
-if[$USE_SSO == ""]
- then
+if [ -z "${USE_SSO}" ] 
+then
    export USE_SSO=false
    export SSO_PATH=''
 fi

@@ -9,24 +9,15 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
-/* function getCookie(cname) {
-  const name = `${cname}=`;
-  const ca = document.cookie.split(';');
-  for (let i = 0; i < ca.length; i += 1) {
-    const c = ca[i].trim();
-    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
-  }
-  return undefined;
-} */
-const myCookie = document.cookie;
+if (window.USE_SSO === '__USE_SSO__') {
+  console.log('Setting Default Values');
+  window.USE_SSO = false;
+  window.SSO_URL = 'http://keycloak-myproject[YourURLGOESHERE]]/auth';
+}
 const url = window.location.hostname;
-console.log(`Cookies: ${myCookie}`);
-const cSettings = undefined;
-// const cSettings = JSON.parse(getCookie('config'));
 
-if (cSettings != null && cSettings.useSSO) {
-  const domainURL = url.substring(url.indexOf('.'), url.length);
-  const kpath = `http://keycloak-myproject${domainURL}/auth`;
+if (window.USE_SSO) {
+  const kpath = window.SSO_URL;
 
   const kc = {
     authRealm: 'bookapi',

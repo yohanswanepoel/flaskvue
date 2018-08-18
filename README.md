@@ -9,7 +9,7 @@ You can run the components seperately on the local environment.
 
 It is more interesting using the OpenShift Developer CLI: https://github.com/redhat-developer/odo/blob/master/docs/cli-reference.md
 
-Version 1 does not utilise Keycloak. (Keycloack can now be switched on/off at build time)
+Version 1 does not utilise Keycloak. (Keycloack can now be switched on/off at deploy time use USE_SSO and SSO_URL environment variables on the NGINX container)
 The current master uses Keycloak.
 ## Keycloak install on MiniShift
 * Make sure you run the oc process command in the same project as your app / If not you will have to change the url in main.js in book-ui project

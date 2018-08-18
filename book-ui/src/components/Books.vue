@@ -4,7 +4,8 @@
     <div class="col-sm-10">
       <h1>Books</h1>
       <hr><br><br>
-      <button type="button" class="btn btn-success btn-sm" v-b-modal.book-modal>Add Book</button>
+      <alert :message=message :type=messageType v-if="showMessage"></alert>
+      <button type="button" class="btn btn-success btn-sm" v-b-modal.bookmodal>Add Book</button>
       <br><br>
       <table class="table table-hover">
         <thead>
@@ -32,53 +33,36 @@
       </table>
     </div>
   </div>
-  <b-modal ref="addBookModal"
-         id="book-modal"
-         title="Add a new book"
-         hide-footer>
-  <b-form @submit="onSubmit" @reset="onReset" class="w-100">
-  <b-form-group id="form-title-group"
-                label="Title:"
-                label-for="form-title-input">
-      <b-form-input id="form-title-input"
-                    type="text"
-                    v-model="addBookForm.title"
-                    required
-                    placeholder="Enter title">
-      </b-form-input>
-    </b-form-group>
-    <b-form-group id="form-author-group"
-                  label="Author:"
-                  label-for="form-author-input">
-        <b-form-input id="form-author-input"
-                      type="text"
-                      v-model="addBookForm.author"
-                      required
-                      placeholder="Enter author">
+  <b-modal ref="addBookModal" id="bookmodal" title="Add a new book" hide-footer>
+    <b-form @submit="onSubmit" @reset="onReset" class="w-100">
+      <b-form-group id="form-title-group" label="Title:" label-for="form-title-input">
+        <b-form-input id="form-title-input" type="text" v-model="addBookForm.title"
+              required placeholder="Enter title">
         </b-form-input>
       </b-form-group>
-    <b-form-group id="form-read-group">
-      <b-form-checkbox-group v-model="addBookForm.read" id="form-checks">
-        <b-form-checkbox value="true">Read?</b-form-checkbox>
-      </b-form-checkbox-group>
-    </b-form-group>
-    <b-button type="submit" variant="primary">Submit</b-button>
-    <b-button type="reset" variant="danger">Reset</b-button>
-  </b-form>
-</b-modal>
+      <b-form-group id="form-author-group" label="Author:" label-for="form-author-input">
+        <b-form-input id="form-author-input" type="text" v-model="addBookForm.author"
+              required placeholder="Enter author">
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="form-read-group">
+        <b-form-checkbox-group v-model="addBookForm.read" id="form-checks">
+          <b-form-checkbox value="true">Read?</b-form-checkbox>
+        </b-form-checkbox-group>
+      </b-form-group>
+      <b-button type="submit" variant="primary" class="btn btn-primary btn-sm">Submit</b-button>
+      <b-button type="reset" variant="danger" class="btn btn-danger btn-sm">Reset</b-button>
+    </b-form>
+  </b-modal>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
+// import Vue from 'vue';
+import Alert from './Alert';
 
-const url = window.location.hostname;
-console.log(url);
-const domainURL = url.substring(url.indexOf('.'), url.length);
-console.log(domainURL);
-const path = `http://python-app-myproject${domainURL}/books`;
-console.log(path);
-// saxios.default.baseURL = baseURL;
+// Vue.component('alert', Alert);
 
 export default {
   name: 'Books',
@@ -90,12 +74,14 @@ export default {
         author: '',
         read: [],
       },
+      message: '',
+      showMessage: false,
+      messageType: 'success',
     };
   },
   methods: {
     getBooks() {
-      // const path = 'http://python-app-myproject.${domainURL}/books';
-      axios.get(path)
+      axios.get(`${window.API_URL}/books`)
         .then((res) => {
           this.books = res.data.books;
         })
@@ -104,21 +90,26 @@ export default {
         });
     },
     addBook(payload) {
-      // const path = '/books';
-      // const path = 'http://python-app-myproject.${domainURL}/books';
-      axios.post(path, payload)
+      axios.post(`${window.API_URL}/books`, payload)
         .then(() => {
           this.getBooks();
+          this.message = 'Books Added';
+          this.showMessage = true;
+          this.messageType = 'success';
         })
         .catch((error) => {
           console.log(error);
           this.getBooks();
+          this.message = 'Error';
+          this.messageType = 'danger';
+          this.showMessage = true;
         });
     },
     initForm() {
       this.addBookForm.title = '';
       this.addBookForm.author = '';
       this.addBookForm.read = [];
+      this.message = false;
     },
     onSubmit(evt) {
       evt.preventDefault();
@@ -141,6 +132,9 @@ export default {
   },
   created() {
     this.getBooks();
+  },
+  components: {
+    alert: Alert,
   },
 };
 

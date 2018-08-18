@@ -9,14 +9,26 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
-if (window.USE_SSO === '__USE_SSO__') {
-  console.log('Setting Default Values');
-  window.USE_SSO = false;
-  window.SSO_URL = 'http://keycloak-myproject[YourURLGOESHERE]]/auth';
-}
-const url = window.location.hostname;
+Vue.use(BootstrapVue);
 
-if (window.USE_SSO) {
+const url = window.location.hostname;
+console.log(url);
+
+const domainURL = url.substring(url.indexOf('.'), url.length);
+// Setting Default Values
+if (window.USE_SSO === '__USE_SSO__') {
+  window.USE_SSO = 'no';
+}
+
+if (window.SSO_URL === 'default') {
+  window.SSO_URL = `http://keycloak-myproject${domainURL}/auth`;
+}
+
+if (window.API_URL === 'default') {
+  window.API_URL = `http://python-app-myproject${domainURL}`;
+}
+
+if (window.USE_SSO === 'yes') {
   const kpath = window.SSO_URL;
 
   const kc = {
@@ -29,8 +41,6 @@ if (window.USE_SSO) {
   const kcInit = {
     onLoad: 'login-required',
   };
-
-  Vue.use(BootstrapVue);
 
   Vue.use(VueKeyCloak, {
     config: kc,

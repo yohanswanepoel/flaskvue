@@ -26,7 +26,7 @@ In general you want to do:
 * See https://vuejs.org/v2/guide/installation.html
 * npm install -g vue-cli
 * cd into the book-ui folder
-* run: npm install  (this creates teh dist folder that will be used later)
+* run: npm install  (this creates the dist folder that will be used later)
 * run: npm run build (this creates a build in dist)
 
 To set it up, point it at your OpenShift Cluster with an OC login.

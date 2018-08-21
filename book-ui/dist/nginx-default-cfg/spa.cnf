@@ -1,0 +1,4 @@
+location / {
+  try_files $uri $uri/ /index.html;
+  add_header Set-Cookie 'config={"useSSO":"false","ssoURL":"http://keycloak-myproject[YourURLGOESHERE]]/auth"}' always;
+}

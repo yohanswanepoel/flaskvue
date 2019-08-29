@@ -3,7 +3,7 @@ if [ -z "${USE_SSO}" ]
 then
    export USE_SSO=no
    export SSO_PATH='default'
-   export API_PATH='default'
+   export API_PATH='http://python-qmii-8080-app-myproject.apps.cluster-dhs-c677.dhs-c677.openshiftworkshop.com/books'
 fi
 
 sed -i -e "s|__USE_SSO__|$USE_SSO|g" /opt/app-root/src/index.html

@@ -31,6 +31,17 @@ BOOKS = [
         'title': 'Green Eggs and Ham',
         'author': 'Dr. Seuss',
         'read': True
+    },
+    {
+        'title': 'Never say Die',
+        'author': 'Ian Flemming',
+        'read': True
+    },
+    {
+        'title': 'Jock of the Bushveld',
+        'author': 'James Percy FitzPatrick',
+        'author': 'Author Unknown',
+        'read': True
     }
 ]
 

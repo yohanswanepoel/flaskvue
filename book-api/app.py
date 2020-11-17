@@ -13,8 +13,8 @@ CORS(app)
 
 @app.route('/')
 def homepage():
-    return """<h1>Books API Landing page try /books</h1>"""
-    
+    return """<h1>Books API Landing page try <a href="/books">/books</a></h1>"""
+
 # Health check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():

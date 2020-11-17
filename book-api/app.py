@@ -11,6 +11,10 @@ app.config.from_object(__name__)
 # enable flask_cors
 CORS(app)
 
+@app.route('/')
+def homepage():
+    return """<h1>Books API Landing page try /books</h1>"""
+    
 # Health check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
@@ -45,9 +49,7 @@ BOOKS = [
     }
 ]
 
-@app.route('/')
-def homepage():
-    return """<h1>Books API Landing page try /books</h1>"""
+
 
 @app.route('/books', methods=['GET','POST'])
 def all_books():
